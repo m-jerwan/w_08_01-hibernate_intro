@@ -78,6 +78,21 @@ public class DBAuthor {
         }
     }
 
+    public static void delete(Author author){
+        session = HibernateUtil.getSessionFactory().openSession();
+
+        try{
+            transaction = session.beginTransaction();
+            session.delete(author);
+            transaction.commit();
+
+        }catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
 
 
 }
