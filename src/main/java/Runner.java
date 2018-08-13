@@ -23,7 +23,11 @@ public class Runner {
         Author authorById = DBAuthor.getById(1);
         Book bookById = DBBook.getById(1);
 
+//UPDATE
+        book_1.setTitle("Ana Karenina");
+        DBBook.update(book_1);
 
-
+        author_1.setNationality("Russian");
+        DBAuthor.update(author_1);
     }
 }

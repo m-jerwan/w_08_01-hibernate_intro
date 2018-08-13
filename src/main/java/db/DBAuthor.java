@@ -47,7 +47,6 @@ public class DBAuthor {
 
     public static Author getById(int id){
         Author result = null;
-
         session = HibernateUtil.getSessionFactory().openSession();
 
         try{
@@ -61,9 +60,24 @@ public class DBAuthor {
             session.close();
         }
         return result;
-
-
     }
+
+    public static void update(Author author){
+        session = HibernateUtil.getSessionFactory().openSession();
+
+        try{
+
+            transaction = session.beginTransaction();
+            session.update(author);
+            transaction.commit();
+
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
 
 
 }

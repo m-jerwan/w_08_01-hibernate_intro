@@ -52,7 +52,6 @@ public class DBBook {
         session = HibernateUtil.getSessionFactory().openSession();
         Book result = null;
 
-
         try {
 
             Criteria cr = session.createCriteria(Book.class);
@@ -65,6 +64,27 @@ public class DBBook {
             session.close();
         }
         return result;
+    }
+
+
+    public static void update(Book book){
+        session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+
+            transaction = session.beginTransaction();
+            session.update(book);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+
+
     }
 
 }
